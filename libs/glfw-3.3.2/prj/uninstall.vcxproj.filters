@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\WorkSpace\ComputerGraphic\ss3\libs\glfw-3.3.2\prj\CMakeFiles\56620fc31e774d62e6f068b0459c1e40\uninstall.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\WorkSpace\ComputerGraphic\ss3\libs\glfw-3.3.2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\WorkSpace\ComputerGraphic\ss3\libs\glfw-3.3.2\prj\CMakeFiles\uninstall" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{4E43195C-1278-3692-866E-EF7AD0877897}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
