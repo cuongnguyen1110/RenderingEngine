@@ -1,5 +1,8 @@
 #pragma once
 
+#include "variant.hpp"
+#include "glm/glm.hpp"
+
 /// Enumeration of data types that can be stored as properties.
 enum PropertyDataType
 {
@@ -7,6 +10,10 @@ enum PropertyDataType
 	PropertyDataTypeFloat,
 	/// Integer data.
 	PropertyDataTypeInt,
+
+	/// Integer data.
+	PropertyDataTypeUInt,
+
 	/// Boolean data.
 	PropertyDataTypeBool,
 	/// ColorRGBA data.
@@ -33,25 +40,30 @@ enum PropertyDataType
 	PropertyDataTypeSRT3D
 };
 
+typedef mpark::variant<int, unsigned int, float, glm::vec3, glm::mat4> PROPERTY_TYPE;
 
-class Property
+
+
+class MaterialProperty
 {
 public:
-	Property() {};
-	~Property() {};
 
+	std::string mUniformName;
 	PropertyDataType mDataType;
-	std::string mName;
+	PROPERTY_TYPE mValue;
 
-
-	template<typename T>
-	void BindUniform(unsigned int programID, std::string name, T value)
+	MaterialProperty(std::string uniformName, PropertyDataType dataType, PROPERTY_TYPE value)
+		:mUniformName(uniformName)
+		, mDataType(dataType)
+		, mValue (value)
 	{
-		if (std::is_same<int, T>::value)
-		 {
-			 printf("SetUniformValue type = int \n");
-		 }
-		 return true;
 	}
+
+	~MaterialProperty() {};
 };
+
+
+
+
+
 

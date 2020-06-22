@@ -117,7 +117,8 @@ void QuadMesh2D::ApplyTransform()
 	// apply quad scale and translate
 	glm::vec3 quadScale(mQuadScale, 1);
 	transform = glm::scale(transform, quadScale);
-	transform = glm::translate(transform, mPosition);
+	//transform = glm::translate(transform, mPosition);
+	//transform = glm::translate(transform, glm::vec3(0.1f,0,0));
 
 	mTransform = transform;
 }

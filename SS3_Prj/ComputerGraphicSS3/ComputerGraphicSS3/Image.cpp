@@ -10,6 +10,8 @@
 #include "Material.h"
 #include "glm/gtc/type_ptr.hpp"
 
+#include "variant.hpp"
+
 Image::Image()
 	:mTexture(nullptr)
 	, mMesh(nullptr)
@@ -46,6 +48,7 @@ bool Image::Init()
 				mTexture->Init();
 				mTexture->Bind();
 				mSize = mTexture->GetSize();
+				//SetMatProperty(std::string("Texture"), mTexture->GetID());
 			}
 
 		}
@@ -102,7 +105,7 @@ void Image::Render()
 
 		mTexture->Active();
 
-		// binding uniform;
+		 //binding uniform;
 		auto textureLocation = glGetUniformLocation(mMaterial->GetID(), "Texture");
 		glUniform1i(textureLocation, 0);
 
@@ -110,6 +113,7 @@ void Image::Render()
 		glm::mat4 meshTransform = mMesh->GetTranform();
 		glUniformMatrix4fv(transformLocation,1, GL_FALSE, glm::value_ptr(meshTransform));
 		
+		SubmitMatProperty();
 
 		mMesh->Active();
 		//render mesh
@@ -143,17 +147,51 @@ void Image::SetMaterial(std::shared_ptr<Material> m)
 
 void Image::SubmitMatProperty()
 {
-	for (std::shared_ptr<Property> p : mListMatProperty)
+	for (std::shared_ptr<MaterialProperty> p : mListMatProperty)
 	{
+		auto location = glGetUniformLocation(mMaterial->GetID(), p->mUniformName.c_str());
+		if (location < 0)
+		{
+			printf("WARNING! can not bind uniform name: %s \n", p->mUniformName.c_str());
+			continue;
+		}
+
 		switch (p->mDataType)
 		{
-		case PropertyDataType::PropertyDataTypeInt:
+		case PropertyDataType::PropertyDataTypeFloat:
 		{
-			//std::shared_ptr<MaterialProperty<int>> mp = dynamic_cast<>;
+			if (auto pval = mpark::get_if<float>(&(p->mValue)))
+			{
+				float value = *pval;
+				glUniform1f(location, value);
+			}
+
+
+			break;
+		}
+
+		case PropertyDataType::PropertyDataTypeUInt:
+		{
+			if (auto pval = mpark::get_if<unsigned int>(&(p->mValue)))
+			{
+				unsigned int value = *pval;
+				glUniform1i(location, value);
+			}
+			break;
+		}
+		case PropertyDataType::PropertyDataTypeVector3:
+		{
+			if (auto pval = mpark::get_if<glm::vec3>(&(p->mValue)))
+			{
+				glm::vec3 value = *pval;
+				glUniform3fv(location, 1, glm::value_ptr(value));
+			}
 			break;
 		}
 		default:
 			break;
 		}
+
+		
 	}
 }

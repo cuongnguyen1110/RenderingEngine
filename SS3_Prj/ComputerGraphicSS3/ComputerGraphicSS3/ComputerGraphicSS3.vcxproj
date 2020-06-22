@@ -163,12 +163,16 @@
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="QuadMesh2D.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="TachometerPage.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="config.hpp" />
     <ClInclude Include="GlobalDefine.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="in_place.hpp" />
+    <ClInclude Include="lib.hpp" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
@@ -179,8 +183,10 @@
     <ClInclude Include="QuadMesh2D.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="TachometerPage.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="variant.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,6 +4,8 @@
 #include <fstream>
 #include <memory>
 
+#include "variant.hpp"
+
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
@@ -23,6 +25,7 @@ unsigned int VBO, VAO, IBO;
 unsigned int shaderProgram;
 int main()
 {
+	
 	// init glfw 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

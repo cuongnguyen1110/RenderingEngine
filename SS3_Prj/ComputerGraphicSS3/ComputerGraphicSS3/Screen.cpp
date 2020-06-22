@@ -3,6 +3,7 @@
 #include "Image.h"
 #include "MeshLoader.h"
 #include "TextureLoader.h"
+#include "TachometerPage.h"
 
 Screen* Screen::mIstance = nullptr;
 std::mutex Screen::mLock;
@@ -44,17 +45,9 @@ bool Screen::InitScreen()
 	std::shared_ptr<Page> root = std::make_shared<Page>("RootPage");
 	mListPage.push_back(root);
 
-	std::shared_ptr<Image> imageNode2D = std::make_shared<Image>("7_13_RPM_Background.png");
-	//imageNode2D->SetPosition(glm::vec2(690 / 2, 690 / 2));
-	root->AddNode(imageNode2D);
-
-	imageNode2D = std::make_shared<Image>("7_13_RPM_Border.png");
-	root->AddNode(imageNode2D);
-
-	imageNode2D = std::make_shared<Image>("7_13_InnerCircles.png");
+	auto tachometer = std::make_shared<TachometerPage>();
+	root->AddNode(tachometer);
 	
-	imageNode2D->SetMatProperty(std::string(""), glm::vec3(0));
-	root->AddNode(imageNode2D);
 
 	for (std::shared_ptr<Page> page : mListPage)
 	{

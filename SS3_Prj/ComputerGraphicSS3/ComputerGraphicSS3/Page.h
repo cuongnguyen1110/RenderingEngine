@@ -8,10 +8,12 @@
 class Page : public Node
 {
 public:
+	Page() {};
+	~Page() {};
 	Page(std::string name);
-	bool Init() override;
-	void Update(float deltaTime) override;
-	void Render() override;
+	virtual bool Init() override;
+	virtual void Update(float deltaTime) override;
+	virtual void Render() override;
 	
 
 	inline std::string GetName() { return mName; };

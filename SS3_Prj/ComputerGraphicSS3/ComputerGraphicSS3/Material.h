@@ -1,9 +1,13 @@
 #pragma once
 
 #include <string>
+#include <type_traits>
 
 #include "glad/glad.h"
 #include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
+
 
 class Texture;
 
@@ -22,6 +26,7 @@ public:
 
 	inline unsigned int GetID() { return mID; }
 
+	
 private:
 	unsigned int mID;
 	std::string mVertexShaderFile, mFragmentShaderFile;

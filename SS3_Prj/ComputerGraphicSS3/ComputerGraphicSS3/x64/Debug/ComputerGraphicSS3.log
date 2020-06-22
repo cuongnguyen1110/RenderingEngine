@@ -1,1 +1,2 @@
-﻿
+﻿LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  ComputerGraphicSS3.vcxproj -> D:\WorkSpace\ComputerGraphic\New folder\RenderingEngine\SS3_Prj\ComputerGraphicSS3\x64\Debug\ComputerGraphicSS3.exe

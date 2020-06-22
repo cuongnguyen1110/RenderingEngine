@@ -11,18 +11,7 @@ class Image :
 {
 public:
 
-	template<typename tType>
-	struct MaterialProperty : public Property
-	{
-		tType mValue;
-		MaterialProperty(std::string name, tType value)
-			:mValue(value)
-		{
-			mName = name;
-		}
-		~MaterialProperty() {};
-
-	};
+	
 
 	Image();
 	Image(std::string url);
@@ -41,19 +30,32 @@ public:
 	 template<typename T>
 	 void SetMatProperty(std::string name, T value)
 	 {
-		 std::shared_ptr<Property> p = std::make_shared<MaterialProperty<T>>(name, value);
-		 if (std::is_same<int, T>::value)
+		 PROPERTY_TYPE propertyValue(0);
+		 PropertyDataType dataType = PropertyDataType::PropertyDataTypeInt;
+
+		 if ( std::is_same<float, T>::value)
 		 {
-			 p->mDataType = PropertyDataType::PropertyDataTypeInt;
+			 dataType = PropertyDataType::PropertyDataTypeFloat;
+			 propertyValue = (value);
 		 }
-		 else if(std::is_same<float, T>::value)
+		 if (std::is_same<unsigned int, T>::value)
 		 {
-			 p->mDataType = PropertyDataType::PropertyDataTypeFloat;
+			 dataType = PropertyDataType::PropertyDataTypeUInt;
+			 propertyValue = (value);
 		 }
-		 else if (std::is_same<bool, T>::value)
+		 else if (std::is_same<int, T>::value)
 		 {
-			 p->mDataType = PropertyDataType::PropertyDataTypeBool;
+			 dataType = PropertyDataType::PropertyDataTypeInt;
+			 propertyValue = (value);
 		 }
+		 else if (std::is_same<glm::vec3, T>::value)
+		 {
+			 dataType = PropertyDataType::PropertyDataTypeVector3;
+			 propertyValue = (value);
+		 }
+
+
+		 auto p = std::make_shared<MaterialProperty>(name, dataType, propertyValue);
 
 		 mListMatProperty.push_back(p);
 		
@@ -73,7 +75,7 @@ private:
 
 	std::string mImageUrl;
 
-	std::vector<std::shared_ptr<Property>> mListMatProperty;
+	std::vector<std::shared_ptr<MaterialProperty>> mListMatProperty;
 
 };
 
