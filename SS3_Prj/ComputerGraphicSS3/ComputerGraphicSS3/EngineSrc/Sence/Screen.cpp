@@ -1,9 +1,9 @@
 #include "Screen.h"
-#include "Page.h"
-#include "Image.h"
-#include "MeshLoader.h"
-#include "TextureLoader.h"
-#include "TachometerPage.h"
+#include "../Node/Page.h"
+#include "../Node/Image.h"
+#include "../ResourceManager/MeshLoader.h"
+#include "../ResourceManager/TextureLoader.h"
+#include "../../Test/TachometerPage.h"
 
 Screen* Screen::mIstance = nullptr;
 std::mutex Screen::mLock;

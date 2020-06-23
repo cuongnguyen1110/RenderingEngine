@@ -2,19 +2,18 @@
 
 #include "Image.h"
 
-#include "MeshLoader.h"
-#include "QuadMesh2D.h"
-#include "GlobalDefine.h"
-#include "TextureLoader.h"
-#include "Texture.h"
-#include "Material.h"
+#include "../ResourceManager/MeshLoader.h"
+#include "../Render/QuadMesh2D.h"''
+#include "../GlobalDefine.h"
+#include "../ResourceManager/TextureLoader.h"
+#include "../Render/Texture.h"
+#include "../Render/Material.h"
 #include "glm/gtc/type_ptr.hpp"
 
-#include "variant.hpp"
+#include "../Variant/variant.hpp"
 
 Image::Image()
 	:mTexture(nullptr)
-	, mMesh(nullptr)
 {
 	
 	mSize = IMAGE_DEFAULT_SIZE;
@@ -22,7 +21,6 @@ Image::Image()
 
 Image::Image(std::string url)
 	:mTexture(nullptr)
-	, mMesh(nullptr)
 	, mImageUrl(url)
 {
 	mSize = IMAGE_DEFAULT_SIZE;
@@ -34,6 +32,8 @@ Image::~Image()
 
 bool Image::Init()
 {
+	Node2D::Init();
+
 	if (mTexture == nullptr)
 	{
 		if (!mImageUrl.empty())
@@ -53,24 +53,8 @@ bool Image::Init()
 
 		}
 	}
-	mMesh = MeshLoader::GetInstance()->LoadMesh("QuadMesh2D");
-	if (mMesh == nullptr)
-	{
-		printf("Image Node init fail: can not load mesh");
-		return false;
-	}
-	else
-	{
-		//mMesh->Bind();
-	}
-
-	// Since the quad mesh has default size, we need to rescale this mesh
-	glm::vec2 quadSize =  dynamic_cast<QuadMesh2D*>(mMesh.get())->GetInitSize();	
-
-	glm::vec2 quadScale = mSize / quadSize;
-	dynamic_cast<QuadMesh2D*>(mMesh.get())->SetQuadScale(quadScale);
-
-	mMesh->Bind();
+	
+	Node2D::ResizeQuad2D(mSize);
 	
 	// init material
 	mMaterial = std::make_shared<Material>("Image");
@@ -78,16 +62,11 @@ bool Image::Init()
 	return true;
 }
 
-void Image::SetPosition(glm::vec2 pos)
-{
-	mPosition = pos;
-	dynamic_cast<QuadMesh2D*>(mMesh.get())->SetPosition(mPosition);
-}
-
-
 void Image::Update(float deltaTime)
 {
-	mMesh->Update();
+	Node2D::Update(deltaTime);
+
+	
 }
 
 void Image::Render()
@@ -102,7 +81,6 @@ void Image::Render()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		mMaterial->Active();
-
 		mTexture->Active();
 
 		 //binding uniform;
@@ -111,7 +89,9 @@ void Image::Render()
 
 		auto transformLocation = glGetUniformLocation(mMaterial->GetID(), "uTransform");
 		glm::mat4 meshTransform = mMesh->GetTranform();
-		glUniformMatrix4fv(transformLocation,1, GL_FALSE, glm::value_ptr(meshTransform));
+		glm::mat4 projectionMat = this->GetProjectionMatrix();
+		glm::mat4 projectionViewModleMat = projectionMat * glm::mat4(1.0f) * meshTransform;
+		glUniformMatrix4fv(transformLocation,1, GL_FALSE, glm::value_ptr(projectionViewModleMat));
 		
 		SubmitMatProperty();
 
@@ -119,6 +99,8 @@ void Image::Render()
 		//render mesh
 		mMesh->Render();
 	}
+
+	Node2D::Render();
 }
 
 
@@ -135,10 +117,6 @@ void Image::SetTexture(std::shared_ptr<Texture> texture)
 
 
 
-void Image::SetMesh(std::shared_ptr<Mesh> mesh)
-{
-	mMesh = mesh;
-}
 
 void Image::SetMaterial(std::shared_ptr<Material> m)
 {
@@ -165,8 +143,6 @@ void Image::SubmitMatProperty()
 				float value = *pval;
 				glUniform1f(location, value);
 			}
-
-
 			break;
 		}
 

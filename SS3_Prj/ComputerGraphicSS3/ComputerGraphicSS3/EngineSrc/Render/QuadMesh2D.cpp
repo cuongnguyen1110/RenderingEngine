@@ -1,5 +1,5 @@
 #include "QuadMesh2D.h"
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 #include "glad/glad.h"
 
 
@@ -30,12 +30,12 @@ QuadMesh2D::QuadMesh2D(glm::vec2 pos, glm::vec2 size, glm::vec2 anchor)
 	mVerties[3] = mVerties[3] - size * mAnchor;
 
 	// convert to openGl view (-1 -> 1);
-	glm::vec2 screenSize(SCR_WIDTH/2, SCR_HEIGHT/2);
+	//glm::vec2 screenSize(SCR_WIDTH/2, SCR_HEIGHT/2);
 
-	mVerties[0] = (mVerties[0] / (screenSize))	- glm::vec2(1,1);
-	mVerties[1] = (mVerties[1] / (screenSize )) - glm::vec2(1, 1);
-	mVerties[2] = (mVerties[2] / (screenSize )) - glm::vec2(1, 1);
-	mVerties[3] = (mVerties[3] / (screenSize )) - glm::vec2(1, 1);
+	//mVerties[0] = (mVerties[0] / (screenSize))	- glm::vec2(1,1);
+	//mVerties[1] = (mVerties[1] / (screenSize )) - glm::vec2(1, 1);
+	//mVerties[2] = (mVerties[2] / (screenSize )) - glm::vec2(1, 1);
+	//mVerties[3] = (mVerties[3] / (screenSize )) - glm::vec2(1, 1);
 }
 
 void QuadMesh2D::Bind()
@@ -113,22 +113,24 @@ void QuadMesh2D::ApplyTransform()
 {
 	// create transformations
 	glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	transform = glm::translate(transform, mPosition);
 
 	// apply quad scale and translate
 	glm::vec3 quadScale(mQuadScale, 1);
 	transform = glm::scale(transform, quadScale);
-	//transform = glm::translate(transform, mPosition);
+	transform = glm::scale(transform, mScale);
+
+	transform = glm::rotate(transform, glm::radians(mRotation.z), glm::vec3(0, 0, 1));
+	
 	//transform = glm::translate(transform, glm::vec3(0.1f,0,0));
 
+	//glm::mat4 projectionMat =  glm::ortho(0.0f, 2.0f, 0.0f, 2.0f, -0.1f, 100.0f);
+	//glm::mat4 projectionMat = glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -0.1f, 100.0f);
 	mTransform = transform;
 }
 
 void QuadMesh2D::SetPosition(glm::vec2 pos)
 {
-	// convert to openGL view
-	glm::vec2 screenSize(SCR_WIDTH / 2, SCR_HEIGHT / 2);
-	pos = (pos / (screenSize)) ;
-
 	glm::vec3 v3Pos(pos, 0);
 	Mesh::SetPosition(v3Pos);
 }
@@ -142,4 +144,15 @@ void QuadMesh2D::SetRotationZ(glm::float32 rot)
 {
 	glm::vec3 v3Rot(0,0, rot);
 	Mesh::SetRotation(v3Rot);
+}
+
+std::shared_ptr<QuadMesh2D> QuadMesh2D::Clone()
+{
+	auto clonedMesh = std::make_shared<QuadMesh2D>(glm::vec2(0), this->mSize, this->mAnchor);
+	clonedMesh->mIBO = this->mIBO;
+	clonedMesh->mVAO = this->mVAO;
+	clonedMesh->mVBO = this->mVBO;
+	clonedMesh->mQuadScale = this->mQuadScale;
+
+	return clonedMesh;
 }

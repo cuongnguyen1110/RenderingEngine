@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
@@ -16,102 +12,136 @@
     <Filter Include="Test">
       <UniqueIdentifier>{56e1657a-882b-4717-b8ca-23f9b87c2d15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Variant">
+      <UniqueIdentifier>{4bcc8ff9-cf6d-416f-861f-5cc08ac3826f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineSrc">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="EngineSrc\Node">
+      <UniqueIdentifier>{a241dc94-d3d8-43c2-9028-5998539ebaeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineSrc\Render">
+      <UniqueIdentifier>{7db4e4a6-608d-4358-8dd1-fa2872d6bb58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineSrc\ResourceManager">
+      <UniqueIdentifier>{e1b0bc61-6ca6-4680-97ab-7e22c256b85f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineSrc\Sence">
+      <UniqueIdentifier>{3f204fa7-efff-49f0-99b5-780f91db1501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineSrc\Variant">
+      <UniqueIdentifier>{dc87c838-7cd2-48bb-b0f0-1b64bb5dd56b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComputerGraphicSS3.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>EngineSrc</Filter>
     </ClCompile>
-    <ClCompile Include="Screen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Page.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Node2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QuadMesh2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TachometerPage.cpp">
+    <ClCompile Include="Test\TachometerPage.cpp">
       <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Sence\Screen.cpp">
+      <Filter>EngineSrc\Sence</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\ResourceManager\MeshLoader.cpp">
+      <Filter>EngineSrc\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\ResourceManager\TextureLoader.cpp">
+      <Filter>EngineSrc\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Render\Material.cpp">
+      <Filter>EngineSrc\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Render\Mesh.cpp">
+      <Filter>EngineSrc\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Render\QuadMesh2D.cpp">
+      <Filter>EngineSrc\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Render\Texture.cpp">
+      <Filter>EngineSrc\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Node\Image.cpp">
+      <Filter>EngineSrc\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Node\Node2D.cpp">
+      <Filter>EngineSrc\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Node\Page.cpp">
+      <Filter>EngineSrc\Node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Screen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Page.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QuadMesh2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalDefine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Property.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="config.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Variant</Filter>
     </ClInclude>
     <ClInclude Include="in_place.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Variant</Filter>
     </ClInclude>
     <ClInclude Include="lib.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Variant</Filter>
     </ClInclude>
     <ClInclude Include="variant.hpp">
+      <Filter>Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TachometerPage.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\GlobalDefine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TachometerPage.h">
-      <Filter>Test</Filter>
+    <ClInclude Include="EngineSrc\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Variant\config.hpp">
+      <Filter>EngineSrc\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Variant\in_place.hpp">
+      <Filter>EngineSrc\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Variant\lib.hpp">
+      <Filter>EngineSrc\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Variant\variant.hpp">
+      <Filter>EngineSrc\Variant</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Sence\Screen.h">
+      <Filter>EngineSrc\Sence</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\ResourceManager\MeshLoader.h">
+      <Filter>EngineSrc\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\ResourceManager\TextureLoader.h">
+      <Filter>EngineSrc\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Render\Material.h">
+      <Filter>EngineSrc\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Render\Mesh.h">
+      <Filter>EngineSrc\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Render\QuadMesh2D.h">
+      <Filter>EngineSrc\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Render\Texture.h">
+      <Filter>EngineSrc\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Node\Image.h">
+      <Filter>EngineSrc\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Node\Node.h">
+      <Filter>EngineSrc\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Node\Node2D.h">
+      <Filter>EngineSrc\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Node\Page.h">
+      <Filter>EngineSrc\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Node\Property.h">
+      <Filter>EngineSrc\Node</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,13 +4,13 @@
 #include <fstream>
 #include <memory>
 
-#include "variant.hpp"
+#include "EngineSrc/Variant/variant.hpp"
 
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-#include "Screen.h"
-#include "GlobalDefine.h"
+#include "EngineSrc/Sence/Screen.h"
+#include "EngineSrc/GlobalDefine.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

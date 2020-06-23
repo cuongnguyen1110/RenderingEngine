@@ -1,6 +1,6 @@
 #pragma once
 
-#include "variant.hpp"
+#include "../Variant/variant.hpp"
 #include "glm/glm.hpp"
 
 /// Enumeration of data types that can be stored as properties.

@@ -20,6 +20,8 @@ public:
 	void Render() final;
 	void Update();
 	void ApplyTransform();
+
+	std::shared_ptr<QuadMesh2D> Clone();
 	
 	void SetPosition(glm::vec2 pos);
 	void SetScale(glm::vec2 scale);

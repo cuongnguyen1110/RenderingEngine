@@ -11,8 +11,6 @@ class Image :
 {
 public:
 
-	
-
 	Image();
 	Image(std::string url);
 	~Image();
@@ -23,7 +21,7 @@ public:
 
 	 void SetTexture( std::string url);
 	 void SetTexture(std::shared_ptr<Texture> texture);
-	 void SetPosition(glm::vec2 pos);
+	
 
 	 void SetMaterial(std::shared_ptr<Material> m);
 
@@ -62,17 +60,12 @@ public:
 	 };
 	 
 private:
-	void SetMesh(std::shared_ptr<Mesh> mesh);
 	void SubmitMatProperty();
 
 	std::shared_ptr<Texture> mTexture;
-	std::shared_ptr<Mesh> mMesh;
 	std::shared_ptr<Material> mMaterial;
 	glm::vec2 mSize;
 	glm::vec2 mAnchor;
-
-	glm::vec2 mImageScaleSize;
-
 	std::string mImageUrl;
 
 	std::vector<std::shared_ptr<MaterialProperty>> mListMatProperty;
