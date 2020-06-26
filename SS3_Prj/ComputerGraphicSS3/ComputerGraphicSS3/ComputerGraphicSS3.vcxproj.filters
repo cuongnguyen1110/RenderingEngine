@@ -34,6 +34,9 @@
     <Filter Include="EngineSrc\Variant">
       <UniqueIdentifier>{dc87c838-7cd2-48bb-b0f0-1b64bb5dd56b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineSrc\Components">
+      <UniqueIdentifier>{0c3b0645-bc61-445b-83cc-5f1b15a037fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComputerGraphicSS3.cpp">
@@ -71,6 +74,12 @@
     </ClCompile>
     <ClCompile Include="EngineSrc\Node\Page.cpp">
       <Filter>EngineSrc\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Components\AnimationClip.cpp">
+      <Filter>EngineSrc\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSrc\Components\BoxColider.cpp">
+      <Filter>EngineSrc\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +151,15 @@
     </ClInclude>
     <ClInclude Include="EngineSrc\Node\Property.h">
       <Filter>EngineSrc\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Components\AnimationClip.h">
+      <Filter>EngineSrc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Components\INodeComponent.h">
+      <Filter>EngineSrc\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSrc\Components\BoxColider.h">
+      <Filter>EngineSrc\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "Page.h"
 
-#include "Node.h"
+#include "Node2D.h"
 
 Page::Page(std::string name)
 	:mName(name)
@@ -11,26 +11,15 @@ Page::Page(std::string name)
 
 bool Page::Init()
 {
-	for (std::shared_ptr<Node> node : mChildNode)
-	{
-		node->Init();
-	}
-
-	return true;
+	return Node2D::Init();
 };
 
 void Page::Update(float deltatime)
 {
-	for (std::shared_ptr<Node> node : mChildNode)
-	{
-		 node-> Update(deltatime);
-	}
+	Node2D::Update(deltatime);
 }
 void Page::Render()
 {
-	for (std::shared_ptr<Node> node : mChildNode)
-	{
-		 node-> Render();
-	}
+	Node2D::Render();
 }
 

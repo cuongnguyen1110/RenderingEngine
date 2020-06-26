@@ -154,6 +154,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ComputerGraphicSS3.cpp" />
+    <ClCompile Include="EngineSrc\Components\AnimationClip.cpp" />
+    <ClCompile Include="EngineSrc\Components\BoxColider.cpp" />
     <ClCompile Include="EngineSrc\Node\Image.cpp" />
     <ClCompile Include="EngineSrc\Node\Node2D.cpp" />
     <ClCompile Include="EngineSrc\Node\Page.cpp" />
@@ -168,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.hpp" />
+    <ClInclude Include="EngineSrc\Components\AnimationClip.h" />
+    <ClInclude Include="EngineSrc\Components\BoxColider.h" />
+    <ClInclude Include="EngineSrc\Components\INodeComponent.h" />
     <ClInclude Include="EngineSrc\GlobalDefine.h" />
     <ClInclude Include="EngineSrc\Node\Image.h" />
     <ClInclude Include="EngineSrc\Node\Node.h" />

@@ -1,10 +1,2 @@
-﻿  Image.cpp
-d:\workspace\computergraphic\new folder\renderingengine\ss3_prj\computergraphicss3\computergraphicss3\enginesrc\node\image.cpp(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Node2D.cpp
-d:\workspace\computergraphic\new folder\renderingengine\ss3_prj\computergraphicss3\computergraphicss3\enginesrc\node\node2d.cpp(50): warning C4114: same type qualifier used more than once
-d:\workspace\computergraphic\new folder\renderingengine\ss3_prj\computergraphicss3\computergraphicss3\enginesrc\node\node2d.cpp(59): warning C4114: same type qualifier used more than once
-  Page.cpp
-  Screen.cpp
-  TachometerPage.cpp
-  Generating Code...
+﻿  AnimationClip.cpp
   ComputerGraphicSS3.vcxproj -> D:\WorkSpace\ComputerGraphic\New folder\RenderingEngine\SS3_Prj\ComputerGraphicSS3\x64\Debug\ComputerGraphicSS3.exe

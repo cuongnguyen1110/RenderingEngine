@@ -3,7 +3,7 @@
 
 
 class Image;
-class Node;
+class Node2D;
 
 class TachometerPage :
 	public Page
@@ -15,8 +15,7 @@ public:
 	 void Update(float deltaTime) final;
 	
 private:
-	std::shared_ptr<Image> mBackGroundNode;
-	std::shared_ptr<Image> mBorderNode;
-	std::shared_ptr<Image> mBackInnerCircleNode;
+	std::shared_ptr<Node2D> mSlider;
+	std::shared_ptr<Image> mBackgroundNode;
 };
 

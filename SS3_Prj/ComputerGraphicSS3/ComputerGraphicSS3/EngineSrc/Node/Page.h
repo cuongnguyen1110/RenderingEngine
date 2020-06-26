@@ -3,9 +3,9 @@
 #include<vector>
 #include <string>
 
-#include "Node.h"
+#include "Node2D.h"
 
-class Page : public Node
+class Page : public Node2D
 {
 public:
 	Page() {};

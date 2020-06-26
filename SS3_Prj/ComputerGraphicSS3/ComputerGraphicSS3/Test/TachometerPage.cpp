@@ -1,60 +1,83 @@
 #include "TachometerPage.h"
-#include "../EngineSrc/Node/Node.h"
 #include "../EngineSrc/Node/Image.h"
+#include "../EngineSrc/Node/Node2D.h"
 #include "../EngineSrc/Render/Material.h"
+#include "../EngineSrc/Render/Texture.h"
+#include"../EngineSrc/ResourceManager/TextureLoader.h"
 #include "../EngineSrc/GlobalDefine.h"
+#include "../EngineSrc/Components/AnimationClip.h"
+#include "../EngineSrc/Components/BoxColider.h"
 
 #include "glm/glm.hpp"
 
+#include<chrono>
+
 TachometerPage::TachometerPage()
 {
-	mBackGroundNode = std::make_shared<Image>("7_13_RPM_Background.png");
-	this->AddNode(mBackGroundNode);
+	mBackgroundNode = std::make_shared<Image>("Tachometer_v2.png");
+	this->AddNode(mBackgroundNode);
 
-	mBorderNode = std::make_shared<Image>("7_13_RPM_Border.png");
-	this->AddNode(mBorderNode);
-
-	mBackInnerCircleNode = std::make_shared<Image>("7_13_InnerCircles.png");
-	this->AddNode(mBackInnerCircleNode);
+	mSlider = std::make_shared<Node2D>();
+	this->AddNode(mSlider);
 }
 
 TachometerPage::~TachometerPage()
 {
 
 }
+
 bool TachometerPage::Init()
 {
 	Page::Init(); // Init all added node
 
-	auto mat = std::make_shared<Material>("ImageBaseColor");
-	mat->BindShader();
-	mBackGroundNode->SetMaterial(mat);
-	mBorderNode->SetMaterial(mat);
-	mBackInnerCircleNode->SetMaterial(mat);
+	mSlider->SetSize(glm::vec2(690, 690));
 
-	glm::vec3 baseColor = glm::vec3(149, 18, 0) / glm::vec3(255);
-	mBackGroundNode->SetMatProperty("BaseColor", baseColor);
+	//-----------Test AnimationClip -------------
+	auto animation = std::make_shared<AnimationClip>();
+	mSlider->AddComponent(animation);
 
-	baseColor = glm::vec3(26) / glm::vec3(255);
-	mBackInnerCircleNode->SetMatProperty("BaseColor", baseColor);
+	auto testAnim = mSlider->GetComponent<AnimationClip>();
+	auto testBoxColider = mSlider->GetComponent<BoxColider>();
+	//-------------------------------------------
 
-	baseColor = glm::vec3(150) / glm::vec3(255);
-	mBorderNode->SetMatProperty("BaseColor", baseColor);
+	auto sliderTexture = TextureLoader::GetInstance()->LoadTexture("7_13_RPM_Background.png");
+	sliderTexture->Init();
+	sliderTexture->Bind();
+	mSlider->SetTexture(sliderTexture);
 
-	//mBorderNode->SetScale(glm::vec2(0.5f, 0.5f));
+	auto imgFillProcess = std::make_shared<Material>("ImageFillProcess");
+	imgFillProcess->BindShader();
+	mSlider->SetMaterial(imgFillProcess);
 
-	//mBorderNode->SetRotationZ(-90);
+	auto baseColor = glm::vec3(149, 18, 0) / glm::vec3(255);
+	mSlider->SetMatProperty("uBaseColor", baseColor);
+	mSlider->SetMatProperty("uRotate", 60.0f);
+	mSlider->SetMatProperty("scaleProcess", 0.666667f);
+	mSlider->SetMatProperty("uFilledPercen", 0.2f);
 
-	mBorderNode->SetPosition(glm::vec2(SCR_WIDTH/2, SCR_HEIGHT/2));
-	mBackGroundNode->SetPosition(glm::vec2(SCR_WIDTH / 2, SCR_HEIGHT / 2));
-	mBackInnerCircleNode->SetPosition(glm::vec2(SCR_WIDTH / 2, SCR_HEIGHT / 2));
+	this->SetRelativePosition(glm::vec2(SCR_WIDTH / 2, SCR_HEIGHT / 2));
+	//this->se
 	return true;
 }
 
-
+float SPEED_TEST = 0.2f;
 void TachometerPage::Update(float deltaTime)
 {
+	static auto lastTime = std::chrono::high_resolution_clock::now();
 
+	auto now = std::chrono::high_resolution_clock::now();
+
+	auto dt = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastTime).count();
 	Page::Update(deltaTime);
 
+	static float percen = 0.0f;
+	percen += SPEED_TEST * deltaTime;
+	if (percen > 1.0f || percen < 0.0f)
+	{
+		SPEED_TEST = SPEED_TEST * (-1.0f);
+	}
+
+	mSlider->SetMatProperty("uFilledPercen", percen);
+
+	lastTime = std::chrono::high_resolution_clock::now();
 };

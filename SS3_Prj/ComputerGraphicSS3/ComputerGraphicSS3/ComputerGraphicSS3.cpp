@@ -59,12 +59,25 @@ int main()
 
 	screen->InitScreen();
 	/* Loop until the user closes the window */
+	
+	static auto EndFrameTime = std::chrono::high_resolution_clock::now();
+
 	while (!glfwWindowShouldClose(window))
 	{
+		
+		auto now = std::chrono::high_resolution_clock::now();
+		auto deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - EndFrameTime).count();
+
+		//limit FPS at 60
+		if ( deltaTime < 16.67f)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds((int)(16.67f - deltaTime)) );
+			deltaTime = 16.67f;
+		}
 		// input
 		// -----
 		processInput(window);
-		screen->Update(0.016f);
+		screen->Update(deltaTime/1000.0f);
 
 
 		glClearColor(0, 0, 0, 1);
@@ -78,6 +91,9 @@ int main()
 
 		/* Poll for and process events */
 		glfwPollEvents();
+
+		EndFrameTime = std::chrono::high_resolution_clock::now();
+		
 	}  
 
 	glfwTerminate();

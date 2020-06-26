@@ -55,7 +55,7 @@ bool Screen::InitScreen()
 	}
 
 	mRootPage = root;
-
+	
 	return true;
 }
 
