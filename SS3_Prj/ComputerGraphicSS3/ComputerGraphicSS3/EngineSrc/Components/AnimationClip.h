@@ -110,11 +110,13 @@ private:
 		{
 			glm::vec2 scale = mpark::get<glm::vec2>(mCurrentValue);
 			mAssignedNode->SetScale(scale);
+			break;
 		}
 		case eAnimationPropertyType::E_ANIMATION_TYPE_MATERIAL:
 		{
 			T value = mpark::get<T>(mCurrentValue);
 			mAssignedNode->SetMatProperty<T>(mPropertyName, value);
+			break;
 		}
 		default:
 			break;
