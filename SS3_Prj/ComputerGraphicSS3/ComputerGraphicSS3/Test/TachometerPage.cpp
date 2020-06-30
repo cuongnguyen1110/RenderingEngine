@@ -9,8 +9,12 @@
 #include "../EngineSrc/Components/BoxColider.h"
 
 #include "glm/glm.hpp"
+#include "../EngineSrc/Variant/variant.hpp"
 
 #include<chrono>
+
+//typedef mpark::variant<unsigned int, float, bool, glm::vec2, glm::vec3> NODE_PROPERTY_TYPE;
+
 
 TachometerPage::TachometerPage()
 {
@@ -19,6 +23,8 @@ TachometerPage::TachometerPage()
 
 	mSlider = std::make_shared<Node2D>();
 	this->AddNode(mSlider);
+
+
 }
 
 TachometerPage::~TachometerPage()
@@ -33,8 +39,23 @@ bool TachometerPage::Init()
 	mSlider->SetSize(glm::vec2(690, 690));
 
 	//-----------Test AnimationClip -------------
-	auto animation = std::make_shared<AnimationClip>();
+	NODE_PROPERTY_TYPE startValue = 0.0f;
+	NODE_PROPERTY_TYPE endValue = 1.0f;
+	auto animation = std::make_shared<AnimationClip>(AnimationClip::eAnimationPropertyType::E_ANIMATION_TYPE_MATERIAL,
+		startValue, endValue, 5.0f, AnimationClip::eAnimationPlayMode::E_ANIMATION_PLAY_MODE_LINEAR, "uFilledPercen", 0);
+	
+	animation->SetAutoPlay(true);
+	animation->SetInfinite(true);
+
+	glm::vec2 startScale = glm::vec2(1, 1);
+	glm::vec2 endScale = glm::vec2(1.5f, 1.5f);
+	auto rotateAnim = std::make_shared<AnimationClip>(AnimationClip::eAnimationPropertyType::E_ANIMATION_TYPE_SCALE,
+		startScale, endScale, 2.0f, AnimationClip::eAnimationPlayMode::E_ANIMATION_PLAY_MODE_LINEAR, "", 0);
+
+	rotateAnim->SetAutoPlay(true);
+	rotateAnim->SetInfinite(true);
 	mSlider->AddComponent(animation);
+	mSlider->AddComponent(rotateAnim);
 
 	auto testAnim = mSlider->GetComponent<AnimationClip>();
 	auto testBoxColider = mSlider->GetComponent<BoxColider>();
@@ -63,21 +84,6 @@ bool TachometerPage::Init()
 float SPEED_TEST = 0.2f;
 void TachometerPage::Update(float deltaTime)
 {
-	static auto lastTime = std::chrono::high_resolution_clock::now();
-
-	auto now = std::chrono::high_resolution_clock::now();
-
-	auto dt = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastTime).count();
 	Page::Update(deltaTime);
 
-	static float percen = 0.0f;
-	percen += SPEED_TEST * deltaTime;
-	if (percen > 1.0f || percen < 0.0f)
-	{
-		SPEED_TEST = SPEED_TEST * (-1.0f);
-	}
-
-	mSlider->SetMatProperty("uFilledPercen", percen);
-
-	lastTime = std::chrono::high_resolution_clock::now();
 };

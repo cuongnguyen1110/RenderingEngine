@@ -40,7 +40,7 @@ enum PropertyDataType
 	PropertyDataTypeSRT3D
 };
 
-typedef mpark::variant<int, unsigned int, float, glm::vec3, glm::mat4> PROPERTY_TYPE;
+typedef mpark::variant<int, unsigned int, float, glm::vec2, glm::vec3, glm::mat4> PROPERTY_TYPE;
 
 
 
