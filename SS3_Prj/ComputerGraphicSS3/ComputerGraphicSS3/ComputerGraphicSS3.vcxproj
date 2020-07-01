@@ -169,7 +169,6 @@
     <ClCompile Include="Test\TachometerPage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="config.hpp" />
     <ClInclude Include="EngineSrc\Components\AnimationClip.h" />
     <ClInclude Include="EngineSrc\Components\BoxColider.h" />
     <ClInclude Include="EngineSrc\Components\INodeComponent.h" />
@@ -191,10 +190,7 @@
     <ClInclude Include="EngineSrc\Variant\in_place.hpp" />
     <ClInclude Include="EngineSrc\Variant\lib.hpp" />
     <ClInclude Include="EngineSrc\Variant\variant.hpp" />
-    <ClInclude Include="in_place.hpp" />
-    <ClInclude Include="lib.hpp" />
     <ClInclude Include="Test\TachometerPage.h" />
-    <ClInclude Include="variant.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

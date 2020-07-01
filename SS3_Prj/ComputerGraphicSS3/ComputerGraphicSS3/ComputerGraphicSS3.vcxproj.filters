@@ -12,9 +12,6 @@
     <Filter Include="Test">
       <UniqueIdentifier>{56e1657a-882b-4717-b8ca-23f9b87c2d15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Variant">
-      <UniqueIdentifier>{4bcc8ff9-cf6d-416f-861f-5cc08ac3826f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineSrc">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -83,18 +80,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="config.hpp">
-      <Filter>Variant</Filter>
-    </ClInclude>
-    <ClInclude Include="in_place.hpp">
-      <Filter>Variant</Filter>
-    </ClInclude>
-    <ClInclude Include="lib.hpp">
-      <Filter>Variant</Filter>
-    </ClInclude>
-    <ClInclude Include="variant.hpp">
-      <Filter>Variant</Filter>
-    </ClInclude>
     <ClInclude Include="Test\TachometerPage.h">
       <Filter>Test</Filter>
     </ClInclude>

@@ -41,21 +41,28 @@ bool TachometerPage::Init()
 	//-----------Test AnimationClip -------------
 	NODE_PROPERTY_TYPE startValue = 0.0f;
 	NODE_PROPERTY_TYPE endValue = 1.0f;
-	auto animation = std::make_shared<AnimationClip>(AnimationClip::eAnimationPropertyType::E_ANIMATION_TYPE_MATERIAL,
-		startValue, endValue, 5.0f, AnimationClip::eAnimationPlayMode::E_ANIMATION_PLAY_MODE_LINEAR, "uFilledPercen", 0);
+	auto animation = std::make_shared<AnimationClip>();
 	
 	animation->SetAutoPlay(true);
 	animation->SetInfinite(true);
 
-	glm::vec2 startScale = glm::vec2(1, 1);
-	glm::vec2 endScale = glm::vec2(1.5f, 1.5f);
-	auto rotateAnim = std::make_shared<AnimationClip>(AnimationClip::eAnimationPropertyType::E_ANIMATION_TYPE_SCALE,
-		startScale, endScale, 2.0f, AnimationClip::eAnimationPlayMode::E_ANIMATION_PLAY_MODE_LINEAR, "", 0);
+	auto animFillProcess = std::make_shared< AnimationClip::AnimationValue>(startValue, endValue, 2.0f, AnimationClip::eAnimationPropertyType::E_ANIMATION_TYPE_MATERIAL
+		, AnimationClip::eAnimationPlayMode::E_ANIMATION_PLAY_MODE_LINEAR, "uFilledPercen");
 
-	rotateAnim->SetAutoPlay(true);
-	rotateAnim->SetInfinite(true);
+	animation->AddAnimProperty(animFillProcess);
+
+	animation->Init();
 	mSlider->AddComponent(animation);
-	mSlider->AddComponent(rotateAnim);
+
+	//glm::vec2 startScale = glm::vec2(1, 1);
+	//glm::vec2 endScale = glm::vec2(1.5f, 1.5f);
+	//auto rotateAnim = std::make_shared<AnimationClip>(AnimationClip::eAnimationPropertyType::E_ANIMATION_TYPE_SCALE,
+	//	startScale, endScale, 2.0f, AnimationClip::eAnimationPlayMode::E_ANIMATION_PLAY_MODE_LINEAR, "", 0);
+
+	//rotateAnim->SetAutoPlay(true);
+	//rotateAnim->SetInfinite(true);
+	//
+	//mSlider->AddComponent(rotateAnim);
 
 	auto testAnim = mSlider->GetComponent<AnimationClip>();
 	auto testBoxColider = mSlider->GetComponent<BoxColider>();

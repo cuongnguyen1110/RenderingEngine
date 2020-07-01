@@ -17,34 +17,57 @@ Material::~Material()
 
 }
 
-void Material::BindShader()
+std::string Material::ReadShaderFromFile(std::string fileName)
 {
-	// 1. retrieve the vertex/fragment source code from filePath
-	std::string vertexCode;
-	std::string fragmentCode;
-	std::string geometryCode;
-	std::ifstream vShaderFile;
-	std::ifstream fShaderFile;
-	std::ifstream gShaderFile;
+	std::ifstream shaderFile;
+	std::string shaderCode;
 
+	shaderFile.open(fileName);
+	if (shaderFile.is_open())
 	{
-		// open files
-		vShaderFile.open(mVertexShaderFile);
-		fShaderFile.open(mFragmentShaderFile);
-		std::stringstream vShaderStream, fShaderStream;
-		// read file's buffer contents into streams
-		vShaderStream << vShaderFile.rdbuf();
-		fShaderStream << fShaderFile.rdbuf();
-		// close file handlers
-		vShaderFile.close();
-		fShaderFile.close();
-		// convert stream into string
-		vertexCode = vShaderStream.str();
-		fragmentCode = fShaderStream.str();
+		std::stringstream shaderStream;
+		shaderStream << shaderFile.rdbuf();
+		shaderFile.close();
 
+		shaderCode = shaderStream.str();
 	}
 
+	return shaderCode;
+}
+
+
+
+void Material::BindShader()
+{
+	//// 1. retrieve the vertex/fragment source code from filePath
+	//std::string vertexCode;
+	//std::string fragmentCode;
+	//std::string geometryCode;
+	//std::ifstream vShaderFile;
+	//std::ifstream fShaderFile;
+	//std::ifstream gShaderFile;
+
+	//{
+	//	// open files
+	//	vShaderFile.open(mVertexShaderFile);
+	//	fShaderFile.open(mFragmentShaderFile);
+	//	std::stringstream vShaderStream, fShaderStream;
+	//	// read file's buffer contents into streams
+	//	vShaderStream << vShaderFile.rdbuf();
+	//	fShaderStream << fShaderFile.rdbuf();
+	//	// close file handlers
+	//	vShaderFile.close();
+	//	fShaderFile.close();
+	//	// convert stream into string
+	//	vertexCode = vShaderStream.str();
+	//	fragmentCode = fShaderStream.str();
+
+	//}
+
+	std::string vertexCode = ReadShaderFromFile(mVertexShaderFile);
 	const char* vShaderCode = vertexCode.c_str();
+
+	std::string fragmentCode = ReadShaderFromFile(mFragmentShaderFile);
 	const char * fShaderCode = fragmentCode.c_str();
 	// 2. compile shaders
 	unsigned int vertex, fragment;

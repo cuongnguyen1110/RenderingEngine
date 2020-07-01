@@ -30,5 +30,7 @@ public:
 private:
 	unsigned int mID;
 	std::string mVertexShaderFile, mFragmentShaderFile;
+
+	std::string ReadShaderFromFile(std::string fileName);
 };
 
