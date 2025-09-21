@@ -2,7 +2,7 @@
 uniform sampler2D Texture;
 
 in  vec2 vTexCoord;
-out vec4 gl_FragColor;
+//out vec4 gl_FragColor;
 
 void main()
 {

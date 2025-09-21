@@ -45,11 +45,12 @@ bool Node2D::Init()
 
 	mMesh->Bind();
 	Node2D::ResizeQuad2D(mSize);
-
-	for (const std::shared_ptr<Node2D> const &node : mChildNode2D)
+	for (auto iter = mChildNode2D.begin(); iter != mChildNode2D.end(); ++iter)
 	{
-		node->Init();
+		(*iter)->Init();
 	}
+
+
 	return true;
 }
 
@@ -57,9 +58,11 @@ void Node2D::Update(float deltaTime)
 {
 	
 	mMesh->Update();
-	for (const std::shared_ptr<Node2D> const &node  : mChildNode2D)
+
+
+	for (auto iter = mChildNode2D.begin(); iter != mChildNode2D.end(); ++iter)
 	{
-		node->Update(deltaTime);
+		(*iter)->Update(deltaTime);
 	}
 
 	UpdateComponent(deltaTime);
@@ -101,10 +104,11 @@ void Node2D::Render()
 
 void Node2D::RenderChild()
 {
-	for (const std::shared_ptr<Node2D> const &node : mChildNode2D)
+	for (auto iter = mChildNode2D.begin(); iter != mChildNode2D.end(); ++iter)
 	{
-		node->Render();
+		(*iter)->Render();
 	}
+
 }
 
 void Node2D::ResizeQuad2D(glm::vec2 newSize)
@@ -119,11 +123,12 @@ void Node2D::ResizeQuad2D(glm::vec2 newSize)
 void Node2D::SetRelativePosition(glm::vec2 pos)
 {
 	mRelativePosition = pos;
-	for (const std::shared_ptr<Node2D> const &node : mChildNode2D)
+
+	for (auto iter = mChildNode2D.begin(); iter != mChildNode2D.end(); ++iter)
 	{
-		node->UpdatePositionFromParrent(mRelativePosition);
-		// updateRelativePos
+		(*iter)->UpdatePositionFromParrent(mRelativePosition);
 	}
+
 }
 
 void Node2D::UpdatePositionFromParrent(glm::vec2 parentRelativePos)

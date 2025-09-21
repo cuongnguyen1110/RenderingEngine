@@ -39,8 +39,8 @@ bool TachometerPage::Init()
 	mSlider->SetSize(glm::vec2(690, 690));
 
 	//-----------Test AnimationClip -------------
-	NODE_PROPERTY_TYPE startValue = 0.0f;
-	NODE_PROPERTY_TYPE endValue = 1.0f;
+	NODE_PROPERTY_TYPE startValue = (float)0.0f;
+	NODE_PROPERTY_TYPE endValue = (float)1.0f;
 	auto animation = std::make_shared<AnimationClip>();
 	
 	animation->SetAutoPlay(true);

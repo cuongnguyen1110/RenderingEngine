@@ -6,7 +6,7 @@ uniform float scaleProcess;
 
 in  vec2 vTexCoord;
 in  vec2 centreCoord;
-out vec4 gl_FragColor;
+
 
 void main()
 {

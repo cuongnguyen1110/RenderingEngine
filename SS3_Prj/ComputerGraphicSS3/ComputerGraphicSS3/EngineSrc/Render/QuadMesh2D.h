@@ -2,7 +2,7 @@
 #include "Mesh.h"
 
 #include "glm/glm.hpp"
-
+#include <memory>
 class QuadMesh2D :
 	public Mesh
 {

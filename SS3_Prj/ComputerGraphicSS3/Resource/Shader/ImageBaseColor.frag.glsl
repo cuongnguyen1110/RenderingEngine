@@ -3,7 +3,7 @@ uniform sampler2D Texture;
 uniform mediump vec3 BaseColor;
 
 in  vec2 vTexCoord;
-out vec4 gl_FragColor;
+
 
 void main()
 {

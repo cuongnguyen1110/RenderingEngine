@@ -1,5 +1,8 @@
 #include "AnimationClip.h"
 #include "../Node/Node2D.h"
+#include <vector>
+#include <iostream>
+using namespace std;
 
 AnimationClip::AnimationClip()
 : mIsPlayDone(false)
@@ -20,11 +23,13 @@ AnimationClip::~AnimationClip()
 
 bool AnimationClip::Init()
 {
-	
+
 	for (const std::shared_ptr<AnimationValue> const animP : mListAnimProperty)
 	{
 		animP->Init();
 	}
+
+	
 
 	if (mIsAutoPlay)
 	{
@@ -37,8 +42,10 @@ bool AnimationClip::Init()
 void AnimationClip::Update(float detalTime)
 {
 
-	for (const std::shared_ptr<AnimationValue> animP : mListAnimProperty)
+	for (auto iter = mListAnimProperty.begin(); iter != mListAnimProperty.end(); ++iter)
 	{
+
+		const std::shared_ptr<AnimationValue> animP = (*iter);
 		if (mIsAutoPlay)
 		{
 			if (auto pval = mpark::get_if<int>(&(animP->mCurrentValue)))
@@ -62,6 +69,7 @@ void AnimationClip::Update(float detalTime)
 			}
 		}
 	}
+
 	
 }
 

@@ -2,7 +2,7 @@
 
 #include "../Variant/variant.hpp"
 #include "glm/glm.hpp"
-
+#include <string>
 /// Enumeration of data types that can be stored as properties.
 enum PropertyDataType
 {
